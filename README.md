@@ -1,8 +1,5 @@
 # wp-course-recommender
 
-
-# Course Recommender - GitHub README
-
 # Course Recommender Plugin
 A simple WordPress plugin to recommend courses based on student interests using a rule-based system.
 
