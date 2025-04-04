@@ -17,6 +17,9 @@ if (!defined('ABSPATH')) {
 // Include necessary files
 //include_once plugin_dir_path(__FILE__) . 'admin/admin-menu.php';
 //include_once plugin_dir_path(__FILE__) . 'includes/recommendation-logic.php';
+// add_action('admin_menu', 'course_recommender_admin_menu');
+// add_action('admin_init', 'course_recommender_register_settings');
+
 
 // Admin menu for easier input management
 function course_recommender_admin_menu()
