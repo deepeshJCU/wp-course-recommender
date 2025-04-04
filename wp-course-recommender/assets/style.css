@@ -1,0 +1,31 @@
+.course-recommender-form {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.course-recommender-form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+.course-recommender-form input[type="text"], .course-recommender-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.course-recommender-form input[type="submit"] {
+    background: #0073aa;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.course-recommender-form input[type="submit"]:hover {
+    background: #005177;
+}
