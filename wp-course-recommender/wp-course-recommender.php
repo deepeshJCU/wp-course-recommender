@@ -60,24 +60,30 @@ function course_recommender_register_settings() {
 }
 add_action('admin_init', 'course_recommender_register_settings');
 
+// ✅ Improved JSON validation and handling
 function course_recommender_validate_mappings($input) {
-    $decoded = json_decode($input, true);
+    $decoded = json_decode(stripslashes($input), true);
     if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
         add_settings_error('course_recommender_mappings', 'invalid_json', 'Invalid JSON format. Please check your input.');
-        return get_option('course_recommender_mappings');
+        return get_option('course_recommender_mappings'); // Keep old value
     }
     return json_encode($decoded, JSON_PRETTY_PRINT);
 }
 
 function course_recommender_mappings_callback() {
-    $mappings = get_option('course_recommender_mappings', array());
+    $mappings = get_option('course_recommender_mappings', '{}'); // Default to empty JSON
+    $decoded_mappings = json_decode($mappings, true);
+
+    if (!is_array($decoded_mappings)) {
+        $decoded_mappings = [];
+    }
     ?>
-    <textarea name="course_recommender_mappings" rows="5" cols="50"><?php echo esc_textarea(json_encode($mappings, JSON_PRETTY_PRINT)); ?></textarea>
+    <textarea name="course_recommender_mappings" rows="5" cols="50"><?php echo esc_textarea(json_encode($decoded_mappings, JSON_PRETTY_PRINT)); ?></textarea>
     <p>Enter interest-to-course mappings in JSON format.</p>
     <?php
 }
 
-// Shortcode for displaying the course recommendation form
+// ✅ Shortcode for displaying the course recommendation form
 function course_recommender_form() {
     ob_start();
     ?>
@@ -95,7 +101,7 @@ function course_recommender_form() {
             display: block;
             margin-bottom: 5px;
         }
-        .course-recommender-form input[type="text"], .course-recommender-form textarea {
+        .course-recommender-form input[type="text"] {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -114,16 +120,20 @@ function course_recommender_form() {
             background: #005177;
         }
     </style>
+
     <form method="post" class="course-recommender-form">
         <label for="student_interest">Enter Your Interest:</label>
         <input type="text" name="student_interest" id="student_interest" required pattern="[A-Za-z0-9 ]{2,50}" title="Please enter a valid interest (2-50 alphanumeric characters)." />
         <input type="submit" name="get_recommendation" value="Get Recommendations" />
     </form>
+
     <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['get_recommendation'])) {
-        $interest = sanitize_text_field($_POST['student_interest']);
-        if (preg_match('/^[A-Za-z0-9 ]{2,50}$/', $interest)) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['get_recommendation'])) {
+        $interest = sanitize_text_field(filter_input(INPUT_POST, 'student_interest', FILTER_SANITIZE_STRING));
+
+        if ($interest && preg_match('/^[A-Za-z0-9 ]{2,50}$/', $interest)) {
             $recommendations = course_recommender_get_recommendations($interest);
+
             if (!empty($recommendations)) {
                 echo '<h3>Recommended Courses:</h3><ul>';
                 foreach ($recommendations as $course) {
@@ -131,7 +141,7 @@ function course_recommender_form() {
                 }
                 echo '</ul>';
             } else {
-                echo '<p>No matching courses found.</p>';
+                echo '<p>No matching courses found. Please try a different interest.</p>';
             }
         } else {
             echo '<p>Invalid input. Please enter a valid interest.</p>';
@@ -140,3 +150,16 @@ function course_recommender_form() {
     return ob_get_clean();
 }
 add_shortcode('course_recommender', 'course_recommender_form');
+
+// ✅ Improved function to fetch recommendations
+function course_recommender_get_recommendations($interest) {
+    $mappings_json = get_option('course_recommender_mappings', '{}');
+    $mappings = json_decode($mappings_json, true);
+
+    if (!is_array($mappings)) {
+        return [];
+    }
+
+    return $mappings[$interest] ?? [];
+}
+?>
