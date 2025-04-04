@@ -19,7 +19,8 @@ if (!defined('ABSPATH')) {
 //include_once plugin_dir_path(__FILE__) . 'includes/recommendation-logic.php';
 
 // Admin menu for easier input management
-function course_recommender_admin_menu() {
+function course_recommender_admin_menu()
+{
     add_menu_page(
         'Course Recommender',
         'Course Recommender',
@@ -32,8 +33,9 @@ function course_recommender_admin_menu() {
 }
 add_action('admin_menu', 'course_recommender_admin_menu');
 
-function course_recommender_admin_page() {
-    ?>
+function course_recommender_admin_page()
+{
+?>
     <div class="wrap">
         <h1>Course Recommender Settings</h1>
         <form method="post" action="options.php">
@@ -44,10 +46,11 @@ function course_recommender_admin_page() {
             ?>
         </form>
     </div>
-    <?php
+<?php
 }
 
-function course_recommender_register_settings() {
+function course_recommender_register_settings()
+{
     register_setting('course_recommender_settings_group', 'course_recommender_mappings', 'course_recommender_validate_mappings');
     add_settings_section('course_recommender_main_section', 'Course Mappings', null, 'course-recommender');
     add_settings_field(
@@ -60,7 +63,8 @@ function course_recommender_register_settings() {
 }
 add_action('admin_init', 'course_recommender_register_settings');
 
-function course_recommender_validate_mappings($input) {
+function course_recommender_validate_mappings($input)
+{
     $decoded = json_decode($input, true);
     if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
         add_settings_error('course_recommender_mappings', 'invalid_json', 'Invalid JSON format. Please check your input.');
@@ -69,17 +73,19 @@ function course_recommender_validate_mappings($input) {
     return json_encode($decoded, JSON_PRETTY_PRINT);
 }
 
-function course_recommender_mappings_callback() {
+function course_recommender_mappings_callback()
+{
     $mappings = get_option('course_recommender_mappings', array());
-    ?>
+?>
     <textarea name="course_recommender_mappings" rows="5" cols="50"><?php echo esc_textarea(json_encode($mappings, JSON_PRETTY_PRINT)); ?></textarea>
     <p>Enter interest-to-course mappings in JSON format.</p>
-    <?php
+<?php
 }
 
 
 // Json for course recommendation
-function course_recommender_get_recommendations($interest) {
+function course_recommender_get_recommendations($interest)
+{
     $mappings = array(
         'ai' => [
             'Intro to AI',
@@ -223,9 +229,10 @@ function course_recommender_get_recommendations($interest) {
 
 
 // Shortcode for displaying the course recommendation form
-function course_recommender_form() {
+function course_recommender_form()
+{
     ob_start();
-    ?>
+?>
     <style>
         .course-recommender-form {
             background: #f9f9f9;
@@ -235,18 +242,22 @@ function course_recommender_form() {
             margin: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .course-recommender-form label {
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
         }
-        .course-recommender-form input[type="text"], .course-recommender-form textarea {
+
+        .course-recommender-form input[type="text"],
+        .course-recommender-form textarea {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         .course-recommender-form input[type="submit"] {
             background: #0073aa;
             color: white;
@@ -255,26 +266,43 @@ function course_recommender_form() {
             border-radius: 4px;
             cursor: pointer;
         }
+
         .course-recommender-form input[type="submit"]:hover {
             background: #005177;
+        }
+
+        .course-recommender-results {
+            text-align: center;
+        }
+
+        .course-recommender-results ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-recommender-results li {
+            margin: 5px 0;
         }
     </style>
     <form method="post" class="course-recommender-form">
         <label for="student_interest">Enter Your Interest:</label>
-        <input type="text" placeholder="Design" name="student_interest" id="student_interest" required pattern="[A-Za-z0-9 ]{2,50}" title="Please enter a valid interest (2-50 alphanumeric characters)." />
+        <input type="text" placeholder="Design, Frontend, Python..." name="student_interest" id="student_interest" required pattern="[A-Za-z0-9 ]{2,50}" title="Please enter a valid interest (2-50 alphanumeric characters)." />
         <input type="submit" name="get_recommendation" value="Get Recommendations" />
     </form>
-    <?php
+<?php
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['get_recommendation'])) {
         $interest = sanitize_text_field($_POST['student_interest']);
         if (preg_match('/^[A-Za-z0-9 ]{2,50}$/', $interest)) {
             $recommendations = course_recommender_get_recommendations($interest);
             if (!empty($recommendations)) {
-                echo '<h3>Recommended Courses:</h3><ul>';
+                echo '<div class="course-recommender-results">';
+                echo '<h3>Recommended Courses:</h3>';
+                echo '<ul>';
                 foreach ($recommendations as $course) {
                     echo '<li>' . esc_html($course) . '</li>';
                 }
                 echo '</ul>';
+                echo '</div>';
             } else {
                 echo '<p>No matching courses found.</p>';
             }
