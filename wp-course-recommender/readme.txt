@@ -1,5 +1,5 @@
 === Course Recommender ===
-Contributors: yourusername  
+Contributors: Deepesh Bijarnia 
 Tags: course recommendation, programming languages, personalized learning, shortcode, admin ui  
 Requires at least: 5.0  
 Tested up to: 6.5  
