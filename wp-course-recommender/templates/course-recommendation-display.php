@@ -1,13 +1,13 @@
-<?php if (!empty($recommended)): ?>
-    <h3>Recommended Courses</h3>
+<?php if (!empty($recommended)) : ?>
+    <h2>Recommended Courses</h2>
     <ul>
-        <?php foreach ($recommended as $course): ?>
-            <li>
-                <strong><?php echo esc_html($course['title']); ?></strong>:<br>
-                <?php echo esc_html($course['description']); ?>
-            </li>
+        <?php foreach ($recommended as $course) : ?>
+            <li><?php echo esc_html($course['title']); ?></li>
         <?php endforeach; ?>
     </ul>
-<?php else: ?>
+<?php else : ?>
     <p>No matching courses found. Try different keywords.</p>
 <?php endif; ?>
+
+<a href="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" class="button">Try Again</a>
+
