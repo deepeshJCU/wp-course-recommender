@@ -7,9 +7,9 @@
 
 **Course Recommender** is a smart, rule-based WordPress plugin that recommends programming courses based on user-selected interests. A perfect fit for educators, coding bootcamps, or content platforms looking to personalize their course offerings.
 
----
 
-## ✨ Features
+
+# ✨ Features
 
 - 📋 Shortcode form `[course_recommender_form]`
 - 💡 Rule-based course suggestions (e.g., Python, Java, JavaScript)
@@ -17,11 +17,11 @@
 - 🎨 Customizable templates for form and results
 - 🧑‍💻 Admin UI stub for future configurations
 
----
 
-## 🗂 Folder Structure
 
-```
+# 🗂 Folder Structure
+
+
 
 wp-course-recommender/
 ├── .github/
@@ -33,9 +33,9 @@ wp-course-recommender/
 │   └── admin-ui.php
 ├── assets/
 │   ├── style.css
-│   ├── screenshot-1.png
-│   ├── screenshot-2.png
-│   └── screenshot-3.png
+│   ├── recommended_courses.png
+│   ├── results.png
+│   └── admin_uploads.png
 ├── includes/
 │   ├── course-recommender-functions.php
 ├── shortcodes/
@@ -47,26 +47,25 @@ wp-course-recommender/
 ├── readme.txt
 └── README.md
 
-````
 
----
 
-## 🖼️ Screenshots
 
-### 1. Frontend form to select user interests
+# 🖼️ Screenshots
+
+# 1. Frontend form to select user interests
 ![Frontend Form](assets/recommended_courses.png)
 
-### 2. Course recommendation results page
+# 2. Course recommendation results page
 ![Course Recommendations](assets/results.png)
 
-### 3. Admin settings page with editable course table
+# 3. Admin settings page with editable course table
 ![Admin Settings](assets/admin_uploads.png)
 
----
 
-## 🚀 Getting Started
 
-### 🔧 Installation
+# 🚀 Getting Started
+
+# 🔧 Installation
 
 1. Clone or download this plugin into your WordPress `/wp-content/plugins/` directory:
 
@@ -76,7 +75,7 @@ wp-course-recommender/
 
 2. Activate **Course Recommender** in the WordPress dashboard under **Plugins**.
 
-### 📌 Usage
+# 📌 Usage
 
 Add the shortcode to any post or page:
 
@@ -86,17 +85,17 @@ Add the shortcode to any post or page:
 
 Users will be shown a simple form, and based on their selections, the plugin will recommend relevant programming courses.
 
----
 
-## 🧠 Logic Overview
+
+# 🧠 Logic Overview
 
 The plugin uses a straightforward rule-matching system:
 
 * `includes/course-recommender-functions.php`: applies the logic and matches user input to courses
 
----
 
-## ⚙️ GitHub Actions CI
+
+# ⚙️ GitHub Actions CI
 
 This plugin includes a basic GitHub Actions workflow:
 
@@ -106,16 +105,16 @@ This plugin includes a basic GitHub Actions workflow:
 
 Config is in: `.github/workflows/plugin-ci.yml`
 
----
 
-## ✅ Compatibility
+
+# ✅ Compatibility
 
 * **WordPress:** 6.0+
 * **PHP:** 7.4+
 
----
 
-## 🎯 Roadmap
+
+# 🎯 Roadmap
 
 * 📝 Store user selections in the database
 * 🔍 Add course thumbnails and descriptions
@@ -123,23 +122,23 @@ Config is in: `.github/workflows/plugin-ci.yml`
 * ⚙️ Expand admin UI customization options
 * 🔌 Expose functionality via REST API
 
----
 
-## 🤝 Contributing
+
+# 🤝 Contributing
 
 We welcome contributions! Fork the repo, open a pull request, or create an issue for discussion.
 
----
 
-## 📄 License
+
+# 📄 License
 
 Licensed under the [GNU GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 
----
 
-## 🙌 Credits
+
+# 🙌 Credits
 
 Built with ❤️ by [Deepesh Bijarnia](https://github.com/deepeshJCU) for the learning community.
 
----
+
 
