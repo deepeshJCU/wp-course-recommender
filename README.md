@@ -4,8 +4,6 @@
 [![PHP](https://img.shields.io/badge/PHP-7.4+-777bb4.svg)](https://www.php.net/)
 [![License: GPL v2 or later](https://img.shields.io/badge/License-GPLv2-blue.svg)](https://www.gnu.org/licenses/gpl-2.0.html)
 [![Build Status](https://github.com/deepeshJCU/wp-course-recommender/actions/workflows/plugin-ci.yml/badge.svg)](https://github.com/deepeshJCU/wp-course-recommender/actions)
-![CI Status](https://github.com/deepeshJCU/wp-course-recommender/actions/workflows/plugin-ci.yml/badge.svg)
-
 
 **Course Recommender** is a smart, rule-based WordPress plugin that recommends programming courses based on user-selected interests. A perfect fit for educators, coding bootcamps, or content platforms looking to personalize their course offerings.
 
@@ -14,7 +12,7 @@
 ## ✨ Features
 
 - 📋 Shortcode form `[course_recommender_form]`
-- 💡 Rule-based course suggestions (e.g., Python, Java, JS)
+- 💡 Rule-based course suggestions (e.g., Python, Java, JavaScript)
 - ⚙️ Modular plugin structure for easy extension
 - 🎨 Customizable templates for form and results
 - 🧑‍💻 Admin UI stub for future configurations
@@ -34,22 +32,35 @@ wp-course-recommender/
 │   ├── admin-styles.css
 │   └── admin-ui.php
 ├── assets/
-│   └── style.css
+│   ├── style.css
+│   ├── screenshot-1.png
+│   ├── screenshot-2.png
+│   └── screenshot-3.png
 ├── includes/
-│   ├── course-data.php
 │   ├── course-recommender-functions.php
-│   └── recommendation-logic.php
 ├── shortcodes/
 │   └── course-recommender-shortcode.php
 ├── templates/
 │   ├── course-recommendation-display.php
-│   ├── form-template.php
+│   └── form-template.php
 ├── course-recommender.php
 ├── readme.txt
 └── README.md
 
-
 ````
+
+---
+
+## 🖼️ Screenshots
+
+### 1. Frontend form to select user interests
+![Frontend Form](assets/recommended_courses.png)
+
+### 2. Course recommendation results page
+![Course Recommendations](assets/results.png)
+
+### 3. Admin settings page with editable course table
+![Admin Settings](assets/admin_uploads.png)
 
 ---
 
@@ -57,43 +68,43 @@ wp-course-recommender/
 
 ### 🔧 Installation
 
-1. Clone or download this plugin into `/wp-content/plugins/`:
+1. Clone or download this plugin into your WordPress `/wp-content/plugins/` directory:
+
    ```bash
    git clone https://github.com/deepeshJCU/wp-course-recommender.git
 ````
 
-2. Go to your WordPress dashboard and activate **Course Recommender** under Plugins.
+2. Activate **Course Recommender** in the WordPress dashboard under **Plugins**.
 
 ### 📌 Usage
 
-Embed the following shortcode in a post or page:
+Add the shortcode to any post or page:
 
 ```wordpress
 [course_recommender_form]
 ```
 
-Users will receive course suggestions based on their selected areas of interest.
+Users will be shown a simple form, and based on their selections, the plugin will recommend relevant programming courses.
 
 ---
 
 ## 🧠 Logic Overview
 
-The plugin uses a simple rule-matching system defined in:
+The plugin uses a straightforward rule-matching system:
 
-* `includes/course-recommender-data.php` (the rule set)
-* `includes/course-recommender-functions.php` (matching logic)
+* `includes/course-recommender-functions.php`: applies the logic and matches user input to courses
 
 ---
 
 ## ⚙️ GitHub Actions CI
 
-This plugin includes a basic GitHub Actions workflow (`.github/workflows/plugin-ci.yml`) to:
+This plugin includes a basic GitHub Actions workflow:
 
 * ✅ Lint PHP files
-* ✅ Run `phpcs` against WordPress coding standards
-* ✅ Validate plugin header format
+* ✅ Run `phpcs` against WordPress Coding Standards
+* ✅ Validate plugin headers
 
-You can expand this to run tests or deployments.
+Config is in: `.github/workflows/plugin-ci.yml`
 
 ---
 
@@ -106,17 +117,17 @@ You can expand this to run tests or deployments.
 
 ## 🎯 Roadmap
 
-* 📝 Save user responses to the database
-* 🔍 Add course images and descriptions
-* 🧑‍🎓 Link to course detail pages
-* ⚙️ More admin customization options
-* 🔌 REST API support
+* 📝 Store user selections in the database
+* 🔍 Add course thumbnails and descriptions
+* 🧑‍🎓 Link recommended courses to detail pages
+* ⚙️ Expand admin UI customization options
+* 🔌 Expose functionality via REST API
 
 ---
 
 ## 🤝 Contributing
 
-Pull requests and suggestions are welcome! Open an issue to discuss any improvements.
+We welcome contributions! Fork the repo, open a pull request, or create an issue for discussion.
 
 ---
 
@@ -128,6 +139,7 @@ Licensed under the [GNU GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.htm
 
 ## 🙌 Credits
 
-Built by Deepesh Bijarnia (https://github.com/deepeshJCU/wp-course-recommender.git) with ❤️ for the learning community.
+Built with ❤️ by [Deepesh Bijarnia](https://github.com/deepeshJCU) for the learning community.
 
+---
 

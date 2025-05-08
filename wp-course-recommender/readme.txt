@@ -1,5 +1,5 @@
 === Course Recommender ===
-Contributors: Deepesh Bijarnia 
+Contributors: Deepesh Bijarnia  
 Tags: course recommendation, programming languages, personalized learning, shortcode, admin ui  
 Requires at least: 5.0  
 Tested up to: 6.5  
@@ -16,7 +16,7 @@ A simple plugin to recommend programming language courses to users based on thei
 **Features:**
 
 - Easy-to-use shortcode: `[course_recommender_form]`
-- Clean admin settings page for future customization
+- Clean admin settings page with visual course management
 - Modular folder structure for easy plugin development
 - Built-in styling and form validation
 - Focused on programming languages like Python, Java, and JavaScript
@@ -37,25 +37,26 @@ This will render a form for users to select their learning preferences. Upon sub
 
 == Folder Structure ==
 
-- `admin/`: Contains admin UI functionality.
-- `includes/`: Contains core logic and helper functions.
-- `shortcodes/`: Contains shortcode logic for the form and results.
-- `templates/`: HTML template files for frontend rendering.
-- `assets/css/`: Stylesheets for both frontend and admin.
+- `admin/`: Contains admin UI functionality (`admin-ui.php`), settings logic (`admin-menu.php`), and admin styles.
+- `assets/`: Contains frontend and admin stylesheets (`style.css`).
+- `includes/`: Core logic like course functions (`course-recommender-functions.php`).
+- `shortcodes/`: Contains the shortcode implementation (`course-recommender-shortcode.php`).
+- `templates/`: HTML templates for frontend display (`form-template.php`, `course-recommendation-display.php`).
+- `course-recommender.php`: Main plugin bootstrap file.
 
 == Screenshots ==
 
-1. Frontend form to select user interests
-2. Course recommendation results page
-3. Admin settings page (stub for customization)
+1. Frontend form to select user interests  
+2. Course recommendation results page  
+3. Admin settings page with editable course table  
 
 == Frequently Asked Questions ==
 
 = Can I add more courses? =  
-Yes! You can update the course list and logic in the `includes/course-recommender-data.php` file.
+Yes! You can use the admin settings page to add, edit, or delete courses directly from the WordPress dashboard.
 
 = Can I customize the form? =  
-Yes, the form is fully editable via the `templates/form.php` file and follows clean HTML5 standards.
+Yes, the form is editable via the `templates/form-template.php` file and uses clean HTML5.
 
 = Will this plugin store user data? =  
 Not in the current version. Future updates may include user data logging with consent.
@@ -63,10 +64,10 @@ Not in the current version. Future updates may include user data logging with co
 == Changelog ==
 
 = 1.0 =
-* Initial release with rule-based course recommendation form.
-* Shortcode support.
-* Admin page stub added.
-* Course focus: Programming languages (Python, Java, JavaScript).
+* Initial release with rule-based course recommendation form.  
+* Shortcode support.  
+* Admin settings UI for managing courses.  
+* Course focus: Programming languages (Python, Java, JavaScript).  
 
 == Upgrade Notice ==
 
@@ -75,4 +76,5 @@ First public release.
 
 == License ==
 
-This plugin is licensed under the GPLv2 or later. See https://www.gnu.org/licenses/gpl-2.0.html
+This plugin is licensed under the GPLv2 or later.  
+See https://www.gnu.org/licenses/gpl-2.0.html
