@@ -1,6 +1,6 @@
 <?php
 function cr_get_programming_courses_by_interest($interests) {
-    include plugin_dir_path(__FILE__) . 'course-data.php';
+    $course_data = get_option('cr_course_data', []);
     $matches = [];
 
     $normalized = array_map(function($i) {
@@ -8,8 +8,10 @@ function cr_get_programming_courses_by_interest($interests) {
     }, $interests);
 
     foreach ($course_data as $course) {
+        $tags = array_map('strtolower', array_map('trim', $course['tags']));
+
         foreach ($normalized as $interest) {
-            if (in_array($interest, $course['tags'])) {
+            if (in_array($interest, $tags)) {
                 $matches[] = $course;
                 break;
             }
